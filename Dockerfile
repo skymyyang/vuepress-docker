@@ -12,9 +12,10 @@ RUN yarn global add vuepress@1.8.2 \
     && apk add rsync curl git
 COPY --from=build /usr/local/bin/webhook /usr/local/bin/webhook
 COPY entrypoint.sh /entrypoint.sh
-COPY vuepress-webhook.sh /vuepress-webhook.sh
+COPY vuepress-webhook-gitlab.sh /vuepress-webhook-gitlab.sh
 COPY hooks.json /hooks.json
 COPY generate.sh /generate.sh
-RUN chmod +x /vuepress-webhook.sh
+RUN chmod +x /vuepress-webhook-gitlab.sh
+RUN chmod +x /generate.sh
 EXPOSE 9000
 ENTRYPOINT ["sh", "/entrypoint.sh"]
