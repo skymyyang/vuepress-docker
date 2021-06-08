@@ -6,7 +6,7 @@ if [ -n "$GITHUB_REPO" ]; then
     cd /root/src
     rm -rf ..?* .[!.]* *
     if [ -n "$GITHUB_TOKEN" ]; then
-        git clone http://$GITHUB_TOKEN@$GITHUB_REPO .; git pull
+        git clone http://oauth2:$GITHUB_TOKEN@$GITHUB_REPO .; git pull
     else
         git clone http://$GITHUB_REPO .; git pull
     fi
@@ -32,7 +32,7 @@ if [ -n "$GITHUB_REPO" ]; then
         git config --global user.email "vuepress@autobuild.local"
         git config --global user.name "Vuepress Autobuild"
         git commit -m 'Auto Deploy'
-        git remote add origin http://$PUSH_TOKEN@$GITHUB_PUSH_REPO
+        git remote add origin http://oauth2:$PUSH_TOKEN@$GITHUB_PUSH_REPO
         git push -f origin master
     fi
 else
